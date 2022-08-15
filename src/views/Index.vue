@@ -1,7 +1,6 @@
 <template>
     <div>
         <Header @escolherComponent="renderizaComponent" :componentDinamico="componentDinamico"/>
-        <h1>conteúdo</h1>
         <component :is="componentDinamico.component"></component>
     </div>
 </template>
