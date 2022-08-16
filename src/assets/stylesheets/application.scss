@@ -1,0 +1,21 @@
+@import "./fonts.scss";
+body,
+html {
+    margin: 0rem;
+    padding: 0rem;
+    font-family: "Poppins";
+}
+.container{
+    width: 100%;
+    max-width: 70rem;
+    padding: .5rem;
+    margin: 0 auto;
+}
+
+*{
+    font-family: 'Poppins';
+    letter-spacing: .5px;
+}
+button{
+    cursor: pointer;
+}
