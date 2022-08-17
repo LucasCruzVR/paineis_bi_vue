@@ -12,13 +12,19 @@
     </div>
     <div class="container area-menu">
       <LogoPaineisInterno />
-      <ul >
-        <li v-for="menu in menus" :key="menu.nome"
-          
-        >
-        <a v-if="usuarioLogado.funcionalidades.includes(menu.permissao)"
-          @click="escolherComponent(menu)">{{ menu.nome }}</a>
-          
+      <input id="atv-menu" type="checkbox" />
+      <label for="atv-menu">
+        <div class="menu">
+          <span class="hamburger"></span>
+        </div>
+      </label>
+      <ul>
+        <li v-for="menu in menus" :key="menu.nome">
+          <a
+            v-if="usuarioLogado.funcionalidades.includes(menu.permissao)"
+            @click="escolherComponent(menu)"
+            >{{ menu.nome }}</a
+          >
         </li>
       </ul>
     </div>
@@ -31,7 +37,7 @@ import * as Auth from "@/services/Auth";
 import { LOGIN_ROTA } from "@/router/nomeRotas";
 import NomeUsuario from "./perfil_usuario/NomeUsuario.vue";
 import IconePerfil from "./perfil_usuario/IconePerfil.vue";
-import LogoPaineisInterno from "../assets/images/logo-interno.svg"
+import LogoPaineisInterno from "../assets/images/logo-interno.svg";
 export default {
   name: "HeaderApp",
   props: {
@@ -70,27 +76,86 @@ export default {
 .nav {
   background-color: #225f49;
   display: flex;
-  .container{
+  .container {
     display: flex;
     justify-content: space-between;
-    .versao{
+    .versao {
       color: white;
-      font-size: .8em;
+      font-size: 0.8em;
     }
-    .dados{
+    .dados {
       display: flex;
       color: white;
-      font-size: .8em;
+      font-size: 0.8em;
     }
   }
 }
-.area-menu{
+.area-menu {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem 1rem;
+  padding: 2rem 0;
   position: relative;
-  ul{
+  svg{
+    margin-left: 1rem;
+  }
+  .menu {
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    top: 2rem;
+    right: 1rem;
+    z-index: 3;
+
+    .hamburger {
+      display: block;
+      background-color: #225f49;
+      width: 1.4rem;
+      height: 2px;
+      position: relative;
+      z-index: 12;
+      margin: 1rem auto;
+    }
+
+    .hamburger::before,
+    .hamburger::after {
+      background-color: #225f49;
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      transition: 0.5s ease-in-out;
+    }
+
+    .hamburger::before {
+      top: 0.4em;
+    }
+
+    .hamburger::after {
+      bottom: 0.35em;
+    }
+  }
+
+  input {
+    display: none;
+  }
+  input:checked ~ nav {
+    top: 3rem;
+  }
+  input:checked ~ label {
+    .hamburger {
+      transform: rotate(45deg);
+    }
+
+    .hamburger::before,
+    .hamburger::after {
+      transform: rotate(90deg);
+      top: 0;
+    }
+  }
+  ul {
     display: grid;
     gap: 1rem;
     position: absolute;
@@ -104,12 +169,12 @@ export default {
     padding: 3rem 0;
     text-align: center;
     color: white;
-    li{
+    li {
       display: block;
     }
-    a{
+    a {
       padding: 1rem 0;
-      font-family: 'Poppins-Semibold';
+      font-family: "Poppins-Semibold";
       display: grid;
     }
   }
