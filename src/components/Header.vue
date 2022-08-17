@@ -4,8 +4,8 @@
       <div class="container">
         <div class="versao">v1.0.0</div>
         <div class="dados">
-          <IconePerfil />0
-          <NomeUsuario :nome="usuarioLogado.nome" />
+          <span>ICONE</span>
+          <span>{{nomeUsuarioLogado}}</span>
           <span @click="logout">Sair</span>
         </div>
       </div>
@@ -29,8 +29,6 @@
 import listaMenuPermissoes from "../listaMenuPermissoes";
 import * as Auth from "@/services/Auth";
 import { LOGIN_ROTA } from "@/router/nomeRotas";
-import NomeUsuario from "./perfil_usuario/NomeUsuario.vue";
-import IconePerfil from "./perfil_usuario/IconePerfil.vue";
 import LogoPaineisInterno from "../assets/images/logo-interno.svg"
 export default {
   name: "HeaderApp",
@@ -40,8 +38,6 @@ export default {
     },
   },
   components: {
-    NomeUsuario,
-    IconePerfil,
     LogoPaineisInterno,
   },
   created() {
@@ -53,6 +49,13 @@ export default {
       menus: [],
       usuarioLogado: [],
     };
+  },
+  computed: {
+    nomeUsuarioLogado() {
+      const nomeCompleto = this.usuarioLogado.nome.split(" ")
+      console.log(nomeCompleto)
+      return nomeCompleto[0] + " " + nomeCompleto[nomeCompleto.length - 1]
+    }
   },
   methods: {
     escolherComponent(menu) {
