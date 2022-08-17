@@ -53,7 +53,6 @@ export default {
   computed: {
     nomeUsuarioLogado() {
       const nomeCompleto = this.usuarioLogado.nome.split(" ")
-      console.log(nomeCompleto)
       return nomeCompleto[0] + " " + nomeCompleto[nomeCompleto.length - 1]
     }
   },
