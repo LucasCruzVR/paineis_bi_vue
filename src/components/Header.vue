@@ -23,10 +23,15 @@
           </div>
         </label>
         <ul>
-          <li v-for="menu in menus" :key="menu.nome">
+          <li v-for="(menu, index) in menus" :key="menu.nome">
+            <a class="active"
+              v-if="usuarioLogado.funcionalidades.includes(menu.permissao) && index == menuSelecionado"
+              @click="escolherComponent(menu, index)"
+              >{{ menu.nome }}</a
+            >
             <a
-              v-if="usuarioLogado.funcionalidades.includes(menu.permissao)"
-              @click="escolherComponent(menu)"
+              v-if="usuarioLogado.funcionalidades.includes(menu.permissao) && index != menuSelecionado"
+              @click="escolherComponent(menu, index)"
               >{{ menu.nome }}</a
             >
           </li>
@@ -62,6 +67,7 @@ export default {
     return {
       menus: [],
       usuarioLogado: [],
+      menuSelecionado: -1
     };
   },
   computed: {
@@ -71,7 +77,8 @@ export default {
     },
   },
   methods: {
-    escolherComponent(menu) {
+    escolherComponent(menu, index) {
+      this.menuSelecionado = index
       this.$emit("escolherComponent", menu);
     },
     logout() {
@@ -83,6 +90,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .nav {
   background-color: #225f49;
   display: flex;
@@ -118,6 +126,10 @@ export default {
     justify-content: space-between;
     padding: 2rem 0;
     position: relative;
+    .active {
+      color: white;
+      background-color: #242424;
+    }
     svg {
       margin-left: 1rem;
     }
