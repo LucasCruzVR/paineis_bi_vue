@@ -1,24 +1,28 @@
 # paineis_bi_vue
 
-## Project setup
+### Configurar projeto (node v16.10)
+```
+sudo apt install curl
+```
+```
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+```
+```
+nvm install 16.10
+```
+```
+nvm use 16.10
+```
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### Executar o projeto
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
+### Gerar o build para produção
 ```
 yarn build
 ```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
