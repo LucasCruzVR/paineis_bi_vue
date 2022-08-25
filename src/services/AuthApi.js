@@ -3,7 +3,7 @@ import axios from "axios"
 class AuthApi {
     async autenticar(login, senha) {
         const data = await axios.post(
-            `http://localhost:3000/api/v1/sessoes/autenticar/`,
+            `${process.env.VUE_APP_BASE_API_URL}/api/v1/sessoes/autenticar/`,
             {
                 login,
                 senha
